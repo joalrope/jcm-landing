@@ -1,0 +1,151 @@
+---
+import "../styles/global.css";
+import "@fontsource/saira/400.css";
+import "@fontsource/saira/800.css";
+import "@fontsource/lora/400.css";
+import "@fontsource/lora/400-italic.css";
+import "@fontsource/montserrat/700.css";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="JCM Inc - Joint Constructions Magnament International" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <script is:inline>
+      (function() {
+        const stored = localStorage.getItem("jcm-theme");
+        const state = stored ? JSON.parse(stored) : { theme: "light", language: "es" };
+        if (state.theme === "dark") {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+  </head>
+  <body class="bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-300">
+    <slot />
+  </body>
+</html>
+
+<script>
+  const translations: Record<string, Record<string, any>> = {
+    es: {
+      nav: { about: "Conócenos", business: "Negocios", projects: "Proyectos", sustainability: "Sostenibilidad", people: "Personas", contact: "Contacto" },
+      hero: { title: "Joint Constructions Magnament International", subtitle: "Construyendo el futuro con experiencia y confianza", cta: "Contáctanos" },
+      about: { title: "Conócenos", description: "JCM Inc es una empresa líder en el sector de la construcción, especializada en la ejecución de proyectos de construcción de edificios, casas, urbanismos, complejos hidroeléctricos, vialidad, proyectos metalmecánicos y montajes industriales.", description2: "Contamos con un equipo de profesionales altamente cualificados y con amplia experiencia en el sector, lo que nos permite garantizar la calidad y eficiencia en cada uno de nuestros proyectos." },
+      business: { title: "Negocios", subtitle: "Áreas de especialización", categories: [{ title: "Construcción Civil", description: "Edificios, casas, urbanismos, complejos hidroeléctricos y vialidad." }, { title: "Proyectos Metalúrgicos", description: "Tuberías, calderería, tanques de almacenamiento de petróleo." }, { title: "Electricidad", description: "Líneas de alta y baja tensión, transformadores, canalizaciones." }] },
+      projects: { title: "Proyectos", subtitle: "Algunos de nuestros proyectos destacados" },
+      sustainability: { title: "Sostenibilidad", subtitle: "Compromiso con el medio ambiente", description: "En JCM Inc estamos comprometidos con el desarrollo sostenible. Implementamos prácticas responsables en todos nuestros proyectos para minimizar nuestro impacto ambiental.", items: [{ title: "Eficiencia Energética", description: "Optimizamos el consumo energético en todas nuestras obras." }, { title: "Materiales Sostenibles", description: "Priorizamos el uso de materiales ecológicos y reciclados." }, { title: "Gestión de Residuos", description: "Implementamos sistemas de gestión de residuos responsables." }] },
+      people: { title: "Personas", subtitle: "Nuestro equipo humano", description: "Nuestro mayor activo es nuestro equipo humano. Contamos con profesionales altamente cualificados que comparten nuestra visión de excelencia y compromiso." },
+      contact: { title: "Contacto", subtitle: "Contáctenos", description: "Estamos disponibles para atender sus consultas y proyectos. No dude en comunicarse con nosotros.", name: "Nombre", email: "Correo electrónico", phone: "Teléfono", message: "Mensaje", send: "Enviar mensaje", address: "Dirección" },
+      footer: { quickLinks: "Enlaces rápidos", contact: "Contacto", description: "Líderes en construcción e infraestructura industrial", rights: "Todos los derechos reservados" }
+    },
+    en: {
+      nav: { about: "About Us", business: "Business", projects: "Projects", sustainability: "Sustainability", people: "People", contact: "Contact" },
+      hero: { title: "Joint Constructions Magnament International", subtitle: "Building the future with experience and trust", cta: "Contact Us" },
+      about: { title: "About Us", description: "JCM Inc is a leading company in the construction sector, specialized in the execution of construction projects for buildings, houses, urbanizations, hydroelectric complexes, road infrastructure, metallurgical projects and industrial assemblies.", description2: "We have a team of highly qualified professionals with extensive experience in the sector, which allows us to guarantee quality and efficiency in each of our projects." },
+      business: { title: "Business", subtitle: "Areas of specialization", categories: [{ title: "Civil Construction", description: "Buildings, houses, urbanizations, hydroelectric complexes and road infrastructure." }, { title: "Metallurgical Projects", description: "Pipes, boiler work, oil storage tanks." }, { title: "Electricity", description: "High and low voltage lines, transformers, electrical channels." }] },
+      projects: { title: "Projects", subtitle: "Some of our featured projects" },
+      sustainability: { title: "Sustainability", subtitle: "Commitment to the environment", description: "At JCM Inc we are committed to sustainable development. We implement responsible practices in all our projects to minimize our environmental impact.", items: [{ title: "Energy Efficiency", description: "We optimize energy consumption in all our works." }, { title: "Sustainable Materials", description: "We prioritize the use of ecological and recycled materials." }, { title: "Waste Management", description: "We implement responsible waste management systems." }] },
+      people: { title: "People", subtitle: "Our human team", description: "Our greatest asset is our human team. We have highly qualified professionals who share our vision of excellence and commitment." },
+      contact: { title: "Contact", subtitle: "Contact Us", description: "We are available to answer your queries and projects. Do not hesitate to contact us.", name: "Name", email: "Email", phone: "Phone", message: "Message", send: "Send message", address: "Address" },
+      footer: { quickLinks: "Quick Links", contact: "Contact", description: "Leaders in construction and industrial infrastructure", rights: "All rights reserved" }
+    }
+  };
+
+  function updateContent() {
+    const stored = localStorage.getItem("jcm-theme");
+    const state = stored ? JSON.parse(stored) : { theme: "light", language: "es" };
+    const lang = state.language;
+    
+    document.documentElement.lang = lang;
+    const t = translations[lang];
+    
+    document.querySelectorAll('[data-i18="nav.about"]').forEach(el => el.textContent = t.nav.about);
+    document.querySelectorAll('[data-i18="nav.business"]').forEach(el => el.textContent = t.nav.business);
+    document.querySelectorAll('[data-i18="nav.projects"]').forEach(el => el.textContent = t.nav.projects);
+    document.querySelectorAll('[data-i18="nav.sustainability"]').forEach(el => el.textContent = t.nav.sustainability);
+    document.querySelectorAll('[data-i18="nav.people"]').forEach(el => el.textContent = t.nav.people);
+    document.querySelectorAll('[data-i18="nav.contact"]').forEach(el => el.textContent = t.nav.contact);
+    
+    document.querySelectorAll('[data-i18="hero.title"]').forEach(el => el.textContent = t.hero.title);
+    document.querySelectorAll('[data-i18="hero.subtitle"]').forEach(el => el.textContent = t.hero.subtitle);
+    document.querySelectorAll('[data-i18="hero.cta"]').forEach(el => el.textContent = t.hero.cta);
+    
+    document.querySelectorAll('[data-i18="about.title"]').forEach(el => el.textContent = t.about.title);
+    document.querySelectorAll('[data-i18="about.description"]').forEach(el => el.textContent = t.about.description);
+    document.querySelectorAll('[data-i18="about.description2"]').forEach(el => el.textContent = t.about.description2);
+    
+    document.querySelectorAll('[data-i18="business.title"]').forEach(el => el.textContent = t.business.title);
+    document.querySelectorAll('[data-i18="business.subtitle"]').forEach(el => el.textContent = t.business.subtitle);
+    document.querySelectorAll('[data-i18="business.cat0.title"]').forEach(el => el.textContent = t.business.categories[0].title);
+    document.querySelectorAll('[data-i18="business.cat0.desc"]').forEach(el => el.textContent = t.business.categories[0].description);
+    document.querySelectorAll('[data-i18="business.cat1.title"]').forEach(el => el.textContent = t.business.categories[1].title);
+    document.querySelectorAll('[data-i18="business.cat1.desc"]').forEach(el => el.textContent = t.business.categories[1].description);
+    document.querySelectorAll('[data-i18="business.cat2.title"]').forEach(el => el.textContent = t.business.categories[2].title);
+    document.querySelectorAll('[data-i18="business.cat2.desc"]').forEach(el => el.textContent = t.business.categories[2].description);
+    
+    document.querySelectorAll('[data-i18="projects.title"]').forEach(el => el.textContent = t.projects.title);
+    document.querySelectorAll('[data-i18="projects.subtitle"]').forEach(el => el.textContent = t.projects.subtitle);
+    
+    document.querySelectorAll('[data-i18="sustainability.title"]').forEach(el => el.textContent = t.sustainability.title);
+    document.querySelectorAll('[data-i18="sustainability.subtitle"]').forEach(el => el.textContent = t.sustainability.subtitle);
+    document.querySelectorAll('[data-i18="sustainability.description"]').forEach(el => el.textContent = t.sustainability.description);
+    document.querySelectorAll('[data-i18="sustainability.item0.title"]').forEach(el => el.textContent = t.sustainability.items[0].title);
+    document.querySelectorAll('[data-i18="sustainability.item0.desc"]').forEach(el => el.textContent = t.sustainability.items[0].description);
+    document.querySelectorAll('[data-i18="sustainability.item1.title"]').forEach(el => el.textContent = t.sustainability.items[1].title);
+    document.querySelectorAll('[data-i18="sustainability.item1.desc"]').forEach(el => el.textContent = t.sustainability.items[1].description);
+    document.querySelectorAll('[data-i18="sustainability.item2.title"]').forEach(el => el.textContent = t.sustainability.items[2].title);
+    document.querySelectorAll('[data-i18="sustainability.item2.desc"]').forEach(el => el.textContent = t.sustainability.items[2].description);
+    
+    document.querySelectorAll('[data-i18="people.title"]').forEach(el => el.textContent = t.people.title);
+    document.querySelectorAll('[data-i18="people.subtitle"]').forEach(el => el.textContent = t.people.subtitle);
+    document.querySelectorAll('[data-i18="people.description"]').forEach(el => el.textContent = t.people.description);
+    
+    const teamPositions = [
+      ["CEO & Fundador", "CEO & Founder"],
+      ["Directora de Operaciones", "Operations Director"],
+      ["Director de Ingeniería", "Engineering Director"],
+      ["Directora de Proyectos", "Projects Director"]
+    ];
+    teamPositions.forEach((positions, index) => {
+      document.querySelectorAll(`[data-i18="people.member${index}.position"]`).forEach(el => {
+        el.textContent = lang === "es" ? positions[0] : positions[1];
+      });
+    });
+    
+    document.querySelectorAll('[data-i18="contact.title"]').forEach(el => el.textContent = t.contact.title);
+    document.querySelectorAll('[data-i18="contact.subtitle"]').forEach(el => el.textContent = t.contact.subtitle);
+    document.querySelectorAll('[data-i18="contact.description"]').forEach(el => el.textContent = t.contact.description);
+    document.querySelectorAll('[data-i18="contact.name"]').forEach(el => el.textContent = t.contact.name);
+    document.querySelectorAll('[data-i18="contact.email"]').forEach(el => el.textContent = t.contact.email);
+    document.querySelectorAll('[data-i18="contact.phone"]').forEach(el => el.textContent = t.contact.phone);
+    document.querySelectorAll('[data-i18="contact.message"]').forEach(el => el.textContent = t.contact.message);
+    document.querySelectorAll('[data-i18="contact.send"]').forEach(el => el.textContent = t.contact.send);
+    
+    document.querySelectorAll('[data-i18="footer.quickLinks"]').forEach(el => el.textContent = t.footer.quickLinks);
+    document.querySelectorAll('[data-i18="footer.contact"]').forEach(el => el.textContent = t.footer.contact);
+    document.querySelectorAll('[data-i18="footer.description"]').forEach(el => el.textContent = t.footer.description);
+    document.querySelectorAll('[data-i18="footer.rights"]').forEach(el => el.textContent = t.footer.rights);
+    
+    const langBtn = document.getElementById("lang-toggle");
+    if (langBtn) {
+      const langSpan = langBtn.querySelector("span");
+      if (langSpan) langSpan.textContent = lang;
+    }
+  }
+  
+  document.addEventListener("DOMContentLoaded", updateContent);
+  document.addEventListener("astro:page-load", updateContent);
+  window.addEventListener("language-changed", updateContent);
+</script>

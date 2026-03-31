@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme {
+  --color-jcm-red: #ea0504;
+  --color-jcm-red-dark: #b41413;
+  --color-jcm-blue: #0f3657;
+  --color-jcm-cream: #eeebdd;
+  --color-jcm-burgundy: #882b34;
+  --color-jcm-crimson: #a21c20;
+  --color-jcm-plum: #572638;
+  --color-jcm-gray: #bcbbba;
+  --color-jcm-steel: #396280;
+  
+  --font-hero: "Saira", sans-serif;
+  --font-subtitle: "Lora", serif;
+  --font-body: "Lora", serif;
+  --font-cta: "Montserrat", sans-serif;
+}
+
+@font-face {
+  font-family: "Saira Extra Bold";
+  src: url("@fontsource/saira/files/saira-latin-800-normal.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #eeebdd;
+  --text-primary: #0f3657;
+  --text-secondary: #396280;
+  --border-color: #bcbbba;
+}
+
+.dark {
+  --bg-primary: #0f3657;
+  --bg-secondary: #1a4a6e;
+  --text-primary: #eeebdd;
+  --text-secondary: #bcbbba;
+  --border-color: #396280;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.font-hero {
+  font-family: var(--font-hero);
+}
+
+.font-subtitle {
+  font-family: var(--font-subtitle);
+  font-style: italic;
+}
+
+.font-cta {
+  font-family: var(--font-cta);
+  font-weight: 700;
+}

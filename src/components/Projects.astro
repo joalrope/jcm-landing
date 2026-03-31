@@ -1,0 +1,66 @@
+---
+import { translations } from "../i18n/translations";
+import type { Language } from "../i18n/translations";
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = translations[lang];
+
+const projects = [
+  {
+    title: "Edificio Torre JCM",
+    category: "Construcción Civil",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&auto=format&fit=crop",
+  },
+  {
+    title: "Urbanización Las Palmeras",
+    category: "Urbanismos",
+    image: "https://images.unsplash.com/photo-1460472178825-e5240623afd5?w=800&auto=format&fit=crop",
+  },
+  {
+    title: "Planta Hidroeléctrica Rio Verde",
+    category: "Complejos Hidroeléctricos",
+    image: "https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?w=800&auto=format&fit=crop",
+  },
+  {
+    title: "Tank Farm Petroleum",
+    category: "Proyectos Metalúrgicos",
+    image: "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=800&auto=format&fit=crop",
+  },
+];
+---
+
+<section id="projects" class="py-20 bg-[var(--bg-primary)]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 data-i18="projects.title" class="font-hero text-3xl md:text-4xl text-jcm-blue dark:text-jcm-cream mb-4">
+        {t.projects.title}
+      </h2>
+      <p data-i18="projects.subtitle" class="font-subtitle text-xl text-[var(--text-secondary)] mb-4">
+        {t.projects.subtitle}
+      </p>
+      <div class="w-24 h-1 bg-jcm-red mx-auto"></div>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {projects.map((project) => (
+        <div class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300">
+          <div class="aspect-w-4 aspect-h-3">
+            <img 
+              src={project.image} 
+              alt={project.title}
+              class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500"
+            />
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-jcm-blue/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+            <span class="text-jcm-red font-cta text-sm uppercase tracking-wider">{project.category}</span>
+            <h3 class="font-hero text-xl text-white mt-2">{project.title}</h3>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

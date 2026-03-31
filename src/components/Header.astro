@@ -1,0 +1,119 @@
+---
+import { translations } from "../i18n/translations";
+import type { Language } from "../i18n/translations";
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = translations[lang];
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-[var(--bg-primary)]/95 backdrop-blur-sm border-b border-[var(--border-color)] transition-colors duration-300">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      <a href="#" class="flex items-center gap-3">
+        <img 
+          src="/jcm-logo.png" 
+          alt="JCM Inc" 
+          class="h-12 w-auto"
+        />
+        <span class="hidden md:block font-hero text-lg text-jcm-blue dark:text-jcm-cream">
+          JCM Inc
+        </span>
+      </a>
+
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="#about" data-i18="nav.about" class="text-[var(--text-primary)] hover:text-jcm-red transition-colors font-body">{t.nav.about}</a>
+        <a href="#business" data-i18="nav.business" class="text-[var(--text-primary)] hover:text-jcm-red transition-colors font-body">{t.nav.business}</a>
+        <a href="#projects" data-i18="nav.projects" class="text-[var(--text-primary)] hover:text-jcm-red transition-colors font-body">{t.nav.projects}</a>
+        <a href="#sustainability" data-i18="nav.sustainability" class="text-[var(--text-primary)] hover:text-jcm-red transition-colors font-body">{t.nav.sustainability}</a>
+        <a href="#people" data-i18="nav.people" class="text-[var(--text-primary)] hover:text-jcm-red transition-colors font-body">{t.nav.people}</a>
+        <a href="#contact" data-i18="nav.contact" class="text-[var(--text-primary)] hover:text-jcm-red transition-colors font-body">{t.nav.contact}</a>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <button id="lang-toggle" class="flex items-center gap-2 px-3 py-1.5 rounded border border-[var(--border-color)] hover:border-jcm-red transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+          </svg>
+          <span class="text-sm font-body uppercase">{lang}</span>
+        </button>
+
+        <button id="theme-toggle" class="p-2 rounded hover:bg-[var(--bg-secondary)] transition-colors">
+          <svg id="sun-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <svg id="moon-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+
+        <button id="mobile-menu-toggle" class="lg:hidden p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden pb-4">
+      <div class="flex flex-col gap-4">
+        <a href="#about" data-i18="nav.about" class="text-[var(--text-primary)] hover:text-jcm-red transition-colors font-body">{t.nav.about}</a>
+        <a href="#business" data-i18="nav.business" class="text-[var(--text-primary)] hover:text-jcm-red transition-colors font-body">{t.nav.business}</a>
+        <a href="#projects" data-i18="nav.projects" class="text-[var(--text-primary)] hover:text-jcm-red transition-colors font-body">{t.nav.projects}</a>
+        <a href="#sustainability" data-i18="nav.sustainability" class="text-[var(--text-primary)] hover:text-jcm-red transition-colors font-body">{t.nav.sustainability}</a>
+        <a href="#people" data-i18="nav.people" class="text-[var(--text-primary)] hover:text-jcm-red transition-colors font-body">{t.nav.people}</a>
+        <a href="#contact" data-i18="nav.contact" class="text-[var(--text-primary)] hover:text-jcm-red transition-colors font-body">{t.nav.contact}</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const themeToggle = document.getElementById("theme-toggle");
+  const langToggle = document.getElementById("lang-toggle");
+  const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const sunIcon = document.getElementById("sun-icon");
+  const moonIcon = document.getElementById("moon-icon");
+
+  function updateThemeUI(theme: string) {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+      sunIcon?.classList.remove("hidden");
+      moonIcon?.classList.add("hidden");
+    } else {
+      document.documentElement.classList.remove("dark");
+      sunIcon?.classList.add("hidden");
+      moonIcon?.classList.remove("hidden");
+    }
+  }
+
+  const stored = localStorage.getItem("jcm-theme");
+  const initialState = stored ? JSON.parse(stored) : { theme: "light", language: "es" };
+  updateThemeUI(initialState.theme);
+
+  themeToggle?.addEventListener("click", () => {
+    const currentTheme = document.documentElement.classList.contains("dark") ? "dark" : "light";
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+    updateThemeUI(newTheme);
+    const stored = localStorage.getItem("jcm-theme");
+    const state = stored ? JSON.parse(stored) : { theme: "light", language: "es" };
+    state.theme = newTheme;
+    localStorage.setItem("jcm-theme", JSON.stringify(state));
+  });
+
+  langToggle?.addEventListener("click", () => {
+    const stored = localStorage.getItem("jcm-theme");
+    const state = stored ? JSON.parse(stored) : { theme: "light", language: "es" };
+    state.language = state.language === "es" ? "en" : "es";
+    localStorage.setItem("jcm-theme", JSON.stringify(state));
+    window.dispatchEvent(new CustomEvent("language-changed"));
+  });
+
+  mobileMenuToggle?.addEventListener("click", () => {
+    mobileMenu?.classList.toggle("hidden");
+  });
+</script>

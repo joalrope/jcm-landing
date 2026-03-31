@@ -1,0 +1,31 @@
+---
+import { translations } from "../i18n/translations";
+import type { Language } from "../i18n/translations";
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = translations[lang];
+---
+
+<section id="about-content" class="py-20 bg-[var(--bg-primary)]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 data-i18="about.title" class="font-hero text-3xl md:text-4xl text-jcm-blue dark:text-jcm-cream mb-4">
+        {t.about.title}
+      </h2>
+      <div class="w-24 h-1 bg-jcm-red mx-auto"></div>
+    </div>
+    
+    <div class="max-w-4xl mx-auto text-center">
+      <p data-i18="about.description" class="font-body text-lg text-[var(--text-primary)] leading-relaxed mb-6">
+        {t.about.description}
+      </p>
+      <p data-i18="about.description2" class="font-body text-lg text-[var(--text-primary)] leading-relaxed">
+        {t.about.description2}
+      </p>
+    </div>
+  </div>
+</section>

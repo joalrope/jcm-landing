@@ -11,7 +11,7 @@
   --color-jcm-gray: #bcbbba;
   --color-jcm-steel: #396280;
   
-  --font-hero: "Saira", sans-serif;
+  --font-hero: "Saira Extra Bold", sans-serif;
   --font-subtitle: "Lora", serif;
   --font-body: "Lora", serif;
   --font-cta: "Montserrat", sans-serif;
@@ -58,6 +58,11 @@ body {
 .font-subtitle {
   font-family: var(--font-subtitle);
   font-style: italic;
+  font-weight: 800;
+}
+
+.font-body {
+  font-family: var(--font-body);
 }
 
 .font-cta {

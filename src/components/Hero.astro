@@ -11,23 +11,24 @@ const t = translations[lang];
 ---
 
 <section id="about" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-  <div class="absolute inset-0 bg-jcm-blue dark:bg-[#0a1a2e]"></div>
-  <div class="absolute inset-0 opacity-20">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,_var(--color-jcm-red)_0%,_transparent_50%)]"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,_var(--color-jcm-steel)_0%,_transparent_40%)]"></div>
+  <div class="absolute inset-0 "></div>
+  <div class="absolute inset-0">
+    <img src="/hero.jpeg" alt="jcm-hero" class="w-full h-full object-cover opacity-100" />
+    <!-- <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,_var(--color-jcm-red)_0%,_transparent_50%)]"></div> -->
+    <!-- <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,_var(--color-jcm-steel)_0%,_transparent_40%)]"></div> -->
   </div>
   
   <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
     <div class="mb-6">
       <img src="/jcm-logo.png" alt="JCM Inc" class="mx-auto h-24 md:h-32 w-auto" />
     </div>
-    <h1 data-i18="hero.title" class="font-hero text-4xl md:text-5xl lg:text-6xl text-white mb-6 leading-tight">
+    <h1 data-i18="hero.title" class="font-hero text-4xl md:text-5xl lg:text-6xl text-[var(--color-jcm-red-dark)] mb-6 leading-tight">
       {t.hero.title}
     </h1>
-    <p data-i18="hero.subtitle" class="font-subtitle text-xl md:text-2xl text-jcm-cream mb-8 max-w-3xl mx-auto">
+    <p data-i18="hero.subtitle" class="font-subtitle text-xl md:text-2xl text-[var(--color-jcm-blue)] mb-8 max-w-3xl mx-auto">
       {t.hero.subtitle}
     </p>
-    <a href="#contact" data-i18="hero.cta" class="inline-block font-cta px-8 py-4 bg-jcm-red hover:bg-jcm-red-dark text-white text-lg rounded transition-all duration-300 hover:shadow-lg hover:shadow-jcm-red/30">
+    <a href="#contact" data-i18="hero.cta" class="inline-block font-cta px-8 py-4 bg-jcm-red-dark hover:bg-jcm-red text-white text-lg rounded transition-all duration-300 hover:shadow-lg hover:shadow-jcm-red/30">
       {t.hero.cta}
     </a>
   </div>

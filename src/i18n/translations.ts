@@ -9,14 +9,14 @@ export const translations = {
       contact: "Contacto",
     },
     hero: {
-      title: "Joint Constructions Magnament International",
+      title: "Joint Constructions Management International",
       subtitle: "Construyendo el futuro con experiencia y confianza",
       cta: "Contáctanos",
     },
     about: {
       title: "Conócenos",
       description: "JCM Inc es una empresa líder en el sector de la construcción, especializada en la ejecución de proyectos de construcción de edificios, casas, urbanismos, complejos hidroeléctricos, vialidad, proyectos metalmecánicos y montajes industriales.",
-      description2: "Contamos con un equipo de profesionales altamente cualificados y con amplia experiencia en el sector, lo que nos permite garantizar la calidad y eficiencia en cada uno de nuestros proyectos.",
+      description2: "Contamos con un equipo de profesionales altamente calificados y con amplia experiencia en el sector, lo que nos permite garantizar la calidad y eficiencia en cada uno de nuestros proyectos.",
     },
     business: {
       title: "Negocios",
@@ -62,7 +62,7 @@ export const translations = {
     people: {
       title: "Personas",
       subtitle: "Nuestro equipo humano",
-      description: "Nuestro mayor activo es nuestro equipo humano. Contamos con profesionales altamente cualificados que comparten nuestra visión de excelencia y compromiso.",
+      description: "Nuestro mayor activo es nuestro equipo humano. Contamos con profesionales altamente calificados que comparten nuestra visión de excelencia y compromiso.",
     },
     contact: {
       title: "Contacto",
@@ -92,7 +92,7 @@ export const translations = {
       contact: "Contact",
     },
     hero: {
-      title: "Joint Constructions Magnament International",
+      title: "Joint Constructions Management International",
       subtitle: "Building the future with experience and trust",
       cta: "Contact Us",
     },
